@@ -228,12 +228,19 @@ export const RecruiterDossierModal: React.FC<RecruiterDossierModalProps> = ({
             </div>
 
             {/* Embedded PDF Viewer */}
-            <div className="w-full h-[520px] rounded-xl overflow-hidden border border-white/[0.1] bg-zinc-950">
+            <div className="w-full h-[520px] rounded-xl overflow-hidden border border-white/[0.1] bg-zinc-950 relative">
               <iframe
                 src={`${CANDIDATE_PROFILE.resumePdfPath}#toolbar=1&navpanes=0&scrollbar=1`}
                 title="Yogendra Majjari Resume"
-                className="w-full h-full"
+                className="w-full h-full relative z-10"
               />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-zinc-400 z-0">
+                <p className="text-xs text-zinc-300 mb-2">If your mobile device does not embed PDFs inline:</p>
+                <div className="flex gap-2">
+                  <a href={CANDIDATE_PROFILE.resumePdfPath} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-lg bg-amber-400 text-zinc-950 font-semibold text-xs">Open Full PDF</a>
+                  <a href={CANDIDATE_PROFILE.resumePdfPath} download="Yogendra_Majjari_Resume.pdf" className="px-3 py-1.5 rounded-lg bg-white/10 text-white font-semibold text-xs">Download</a>
+                </div>
+              </div>
             </div>
           </div>
         )}

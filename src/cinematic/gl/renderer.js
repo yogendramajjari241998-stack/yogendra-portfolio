@@ -106,19 +106,25 @@ export function bind(gl, tex, unit) {
 
 export function loadImage(src) {
   return new Promise((res, rej) => {
-    const i = new Image();
-    i.onload = () => res(i);
-    i.onerror = () => {
-      if (src.startsWith('public/')) {
-        const alt = '/' + src.slice(7);
-        const i2 = new Image();
-        i2.onload = () => res(i2);
-        i2.onerror = () => rej(new Error(`image failed: ${src}`));
-        i2.src = alt;
-      } else {
-        rej(new Error(`image failed: ${src}`));
+    // Strip leading slash and leading public/
+    const clean = src.replace(/^\/?(public\/)?/, '');
+    const candidateUrls = [
+      './' + clean,
+      clean,
+      src
+    ];
+
+    function tryLoad(idx) {
+      if (idx >= candidateUrls.length) {
+        rej(new Error(`image failed to load: ${src}`));
+        return;
       }
-    };
-    i.src = src;
+      const img = new Image();
+      img.onload = () => res(img);
+      img.onerror = () => tryLoad(idx + 1);
+      img.src = candidateUrls[idx];
+    }
+
+    tryLoad(0);
   });
 }

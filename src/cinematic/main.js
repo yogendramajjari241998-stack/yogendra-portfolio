@@ -21,7 +21,7 @@ import { initFinale } from './scene6/boot6.js';
 // scroll offset mid-boot yanks the visitor (and any scripted anchor) around
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-const MEDIA = 'public/media/';
+const MEDIA = './media/';
 const MIN_BLACK = 620;          // the darkness must be felt, even on a fast line
 
 const root = document.documentElement;
@@ -69,8 +69,8 @@ async function main() {
   await Promise.all([
     fontsReady().then(tick),
     app.stage.loadTextures({
-      grunge: 'public/tex/grunge.png',
-      grain: 'public/tex/grain.png',
+      grunge: './tex/grunge.png',
+      grain: './tex/grain.png',
     }).then(tick),
   ]);
 
@@ -233,14 +233,14 @@ function frame(now) {
 // --------------------------------------------------------------------------
 
 function degrade(reason) {
-  console.warn('[gireesh] falling back:', reason);
+  console.warn('[yogendra] falling back:', reason);
   root.classList.remove('is-booting');
   root.classList.add('is-fallback');
   boot.classList.add('is-done');
   for (const [, name] of CUES) root.classList.add(`is-${name}`);
-  document.querySelector('.stage-wrap').insertAdjacentHTML('afterbegin',
-    '<div class="fallback"><p>GIREESH</p>'
-    + '<small>Welcome to my world</small></div>');
+  document.querySelector('.stage-wrap')?.insertAdjacentHTML('afterbegin',
+    '<div class="fallback"><p>YOGENDRA</p>'
+    + '<small>Senior AI & GTM Systems</small></div>');
 }
 
 function renderStill() {

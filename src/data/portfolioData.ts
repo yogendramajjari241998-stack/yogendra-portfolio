@@ -59,7 +59,7 @@ export const CANDIDATE_PROFILE = {
   linkedinDisplay: 'linkedin.com/in/yogendramajjari-4a1768270',
   portfolioUrl: 'https://yogendra-interactive-portfolio.vercel.app',
   portfolioDisplay: 'yogendra-interactive-portfolio.vercel.app',
-  resumePdfPath: '/assets/aistudio/Yogendramajjari_Senior_AI_Resume_c135be01.pdf',
+  resumePdfPath: './assets/aistudio/Yogendramajjari_Senior_AI_Resume_c135be01.pdf',
   openRoles: [
     'GTM Engineer',
     'AI Automation Specialist',
